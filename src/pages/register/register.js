@@ -12,7 +12,7 @@ import { Redirect } from "react-router";
 /**
  * Page used for regisering a user to the platform
  */
-class Register extends React.PureComponent {
+class Register extends React.Component {
   constructor(props) {
     super(props);
 
@@ -23,6 +23,7 @@ class Register extends React.PureComponent {
       password: "",
       invalidRegister: false,
       successRegister: false,
+      errorMessage: "",
     };
   }
 
@@ -41,7 +42,7 @@ class Register extends React.PureComponent {
     const res = await registerAction(this.state.email, this.state.phone, this.state.password, this.state.passwordConfirm);
     if (res.status >= 400) {
       this.setState((state, props) => {
-        return { ...state, invalidRegister: true };
+        return { ...state, invalidRegister: true, errorMessage:res.data.message };
       });
     } else {
       this.setState((state, props) => {
@@ -63,7 +64,7 @@ class Register extends React.PureComponent {
         </header>
         <main>
           {this.state.invalidRegister ? (
-            <FormError message="Something went wrong.  Please confirm your passwords are correct or try a different email." />
+            <FormError message={this.state.errorMessage} />
           ) : null}
           <form name="Register form" onSubmit={this.registerFunc}>
           <Grid row={true}>
@@ -72,6 +73,7 @@ class Register extends React.PureComponent {
                 onChange={this.handleChange}
                 label="Email"
                 for="email"
+                required={true}
               />
             </Grid>
             <Grid column={true} sm={12} md={6}>
@@ -79,6 +81,7 @@ class Register extends React.PureComponent {
                 onChange={this.handleChange}
                 label="Phone Number"
                 for="phone"
+                required={true}
               />
             </Grid>
           </Grid>
@@ -90,6 +93,7 @@ class Register extends React.PureComponent {
                   label="Password"
                   for="password"
                   type="password"
+                  required={true}
                 />
               </Grid>
               <Grid column={true} sm={12} md={6}>
@@ -98,6 +102,7 @@ class Register extends React.PureComponent {
                   label="Confirm Password"
                   for="passwordConfirm"
                   type="password"
+                  required={true}
                 />
               </Grid>
             </Grid>
