@@ -51,6 +51,7 @@ class Register extends React.Component {
       });
     } else {
       this.setState((state, props) => {
+        this.props.setLoggedIn();
         return { ...state, successRegister: true, loading:false };
       });
     }

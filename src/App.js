@@ -53,10 +53,12 @@ class App extends React.Component {
                     <LogoutPage {...props} setLoggedOut={this.setLoggedOut} />
                   )}
                 />
-                <Route path="/register">
-                  <Register />
-                </Route>
-
+                 <Route
+                  path="/register"
+                  render={(props) => (
+                    <Register {...props} setLoggedIn={this.setLoggedIn}/>
+                  )}
+                />
                 <Route path="/tags">
                   <AccessControl>
                     <TagsPage />
