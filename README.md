@@ -19,6 +19,7 @@ $ npm start
 
 ### Features
 
+
 #### Responiveness
 The frontend is fully responsive and can even work on mobile devices.  Additionally, the frontend also provides feedback on if a user has preformed an action by either showing a loading icon, success message or failure message so that they can know what went wrong
 
