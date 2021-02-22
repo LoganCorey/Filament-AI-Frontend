@@ -7,7 +7,7 @@ import classes from "./snippet.module.css";
 class Snippet extends React.PureComponent {
   render() {
     return (
-      <div>
+      <div >
         <Paper classes={[classes.snippet]}>
           <Box p={3}>{this.props.snippet}</Box>
         </Paper>

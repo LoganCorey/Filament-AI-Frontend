@@ -9,7 +9,7 @@ import { createSnippet, getSnippets } from "../../utils/api";
 import FormError from "../../components/form/formError/formError";
 import QuickNavigate from "../../components/quickNavigate/quickNavigate";
 import classes from "./snippetsPage.module.css";
-
+import Loading from '../../components/loading/loading';
 /**
  * Displays every snippet and lets a user add a new snippet
  */
@@ -22,6 +22,8 @@ class SnippetsPage extends React.Component {
       snippet: "",
       snippetError: false,
       snippetSuccess: false,
+      loadingSnippets: true,
+      loadingSnippetsError:""
     };
   }
   /**
@@ -32,8 +34,13 @@ class SnippetsPage extends React.Component {
     const res = await getSnippets();
     if (res.status === 200) {
       this.setState((state, props) => {
-        return { ...state, snippets: res.data.snippets };
+        return { ...state, snippets: res.data.snippets, loadingSnippets:false };
       });
+    }
+    else{
+      this.setState((state, props) => {
+      return { ...state, loadingSnippetsError:"Could not retrieve snippets", loadingSnippets:false };
+    });
     }
   }
 
@@ -120,7 +127,8 @@ class SnippetsPage extends React.Component {
           <Line />
           <Box t={1} />
           <h1> All Snippets</h1>
-
+          {this.state.loadingSnippets? <Loading/>: null}
+          {this.state.loadingSnippetsError !== ""?<p className="errorText">Could not load snippets</p>:null}
           <div className={classes.snippetsContainer}>
             {this.state.snippets.map((snippet, index) => {
               return (

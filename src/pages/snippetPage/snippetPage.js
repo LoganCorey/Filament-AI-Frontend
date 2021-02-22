@@ -5,7 +5,7 @@ import Button from "../../components/button/button";
 import FormError from "../../components/form/formError/formError";
 import QuickNavigate from "../../components/quickNavigate/quickNavigate";
 import Box from "../../components/box/box";
-
+import Loading from '../../components/loading/loading'
 /**
  * Displays a single snippet for edditing
  */
@@ -18,6 +18,7 @@ class SnippetPage extends React.Component {
       successFullyPatched: false,
       failed: false,
       id: null,
+      loading:false,
     };
   }
 
@@ -30,11 +31,11 @@ class SnippetPage extends React.Component {
     const res = await getSnippet(id);
     if (res.status === 200) {
       this.setState((state, props) => {
-        return { ...state, snippet: res.data.snippet.snippet, id };
+        return { ...state, snippet: res.data.snippet.snippet, id};
       });
     } else {
       this.setState((state, props) => {
-        return { ...state, snippetRetrievedFailed: true };
+        return { ...state, snippetRetrievedFailed: true};
       });
     }
   }
@@ -51,15 +52,18 @@ class SnippetPage extends React.Component {
 
   onSnippetPatch = async (e) => {
     e.preventDefault();
+    this.setState((prevState)=>{
+      return {...prevState, loading:true}
+    })
     const res = await patchSnippet(this.state.id, this.state.snippet);
 
     if (res.status === 200) {
       this.setState((state, props) => {
-        return { ...state, successFullyPatched: true, failed: false };
+        return { ...state, successFullyPatched: true, failed: false, loading:false };
       });
     } else {
       this.setState((state, props) => {
-        return { ...state, failed: true, successFullyPatched: false };
+        return { ...state, failed: true, successFullyPatched: false, loading:false };
       });
     }
   };
@@ -72,6 +76,7 @@ class SnippetPage extends React.Component {
         <p>Edit the text in the below box to update your snippet!</p>
         </header>
         <main>
+          {this.state.loading? <Loading/>: null}
         {this.state.failed ? (
           <FormError text="Could not update this snippet" />
         ) : null}

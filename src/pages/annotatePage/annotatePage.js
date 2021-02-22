@@ -8,7 +8,7 @@ import {
 import TextHighlighter from "../../components/textHighlighter/textHighlighter";
 import QuickNavigate from "../../components/quickNavigate/quickNavigate";
 import DisplayActionTags from "./displayActionTags/displayActionTags";
-
+import Loading from '../../components/loading/loading';
 class AnnotatePage extends React.Component {
   constructor(props) {
     super(props);
@@ -20,6 +20,7 @@ class AnnotatePage extends React.Component {
       annotations: [],
       replacedText: [],
       failedMount: false,
+      loading:true,
     };
   }
 
@@ -27,7 +28,7 @@ class AnnotatePage extends React.Component {
     window.scrollTo(0, 0);
     const id = window.location.href.split("/").pop();
     const res = await getAnnotationBySnippetId(id);
-    console.log(res);
+    //console.log(res);
 
     if (res.status >= 200 || res.status < 300) {
       const snippet = res.data.snippet[0].snippet;
@@ -41,11 +42,12 @@ class AnnotatePage extends React.Component {
           tags,
           annotations,
           failedMount: false,
+          loading:false
         };
       });
     } else {
       this.setState((state, props) => {
-        return { ...state, failedMount: true };
+        return { ...state, failedMount: true, loading:false };
       });
     }
   }
@@ -107,6 +109,7 @@ class AnnotatePage extends React.Component {
           tag in the tags box.  Also if you wish to delete a tag then click on the tag in the snippet below.
         </p>
         <Line />
+        { this.state.loading? <Loading/>: null}
         {this.state.failedMount ? (
           <p className="errorText">
             {" "}
@@ -123,7 +126,8 @@ class AnnotatePage extends React.Component {
         )}
 
         <h2>Snippet</h2>
-        {this.state.snippet !== "" ? (
+        { this.state.loading? <Loading/>: null}
+        {this.state.failedMount !== "" ? (
           <TextHighlighter
             annotations={this.state.annotations}
             snippet={this.state.snippet}

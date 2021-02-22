@@ -4,7 +4,7 @@ import Line from "../../components/line/line";
 import { getTags } from "../../utils/api";
 import Box from "../../components/box/box";
 import QuickNavigate from "../../components/quickNavigate/quickNavigate";
-
+import Loading from '../../components/loading/loading';
 /**
  * Currently this page is used for display every tag in the database
  */
@@ -14,6 +14,7 @@ class TagsPage extends React.Component {
     this.state = {
       tags: [],
       tagsError: false,
+      loading:true,
     };
   }
   /**
@@ -24,11 +25,11 @@ class TagsPage extends React.Component {
     const res = await getTags();
     if (res.status === 200) {
       this.setState((state, props) => {
-        return { ...state, tags: res.data.tags, tagsError: false };
+        return { ...state, tags: res.data.tags, tagsError: false, loading:false };
       });
     } else {
       this.setState((state, props) => {
-        return { ...state, tagsErorr: true };
+        return { ...state, tagsErorr: true, loading:false };
       });
     }
   }
@@ -43,6 +44,7 @@ class TagsPage extends React.Component {
             one be sure to ask the admin!
           </p>
           <Line />
+          {this.state.loading? <Loading/>: null}
           {this.state.tagsError ? (
             <h4 className="errorText">
               We weren't able to retrieve any tags :(
