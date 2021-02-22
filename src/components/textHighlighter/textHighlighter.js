@@ -20,14 +20,30 @@ class TextHighlighter extends React.Component {
     const annotationsList = this.props.annotations.map((annotation) => {
       return annotation.annotation;
     });
-
-    const parts = this.props.snippet.split(
-      new RegExp(
-        "((?<=\\s|^)" + annotationsList.join("|") + "(?=\\s|$|[.!?\\-,]))",
-        "gi"
-      )
-    );
-
+    let reg = "(";
+    for(let i =0; i < annotationsList.length; i++){
+      if(i === annotationsList.length - 1){
+        //reg += "(?:^|\\W|[.!?\\-])" + "(" + annotationsList[i]+ ")"+ "(?:^|\\W|[.!?\\-])"
+        //reg+= "(:?^|\\s)(:?" +annotationsList[i] + ")(:?^|\\s)";
+        reg+="\\b" + annotationsList[i] + "\\b"
+      
+      }
+      else{
+        //reg += "(?:^|\\W|[.!?\\-])" +"(" + annotationsList[i]+ ")"+"(?:$|\\W|[.!?\\-])|";
+        //reg+= "(:?^|\\s)(" +annotationsList[i] + ")(:?^|\\s)|";
+        reg += "\\b" +annotationsList[i] +"\\b|"
+      }
+    }
+    reg+=")"
+   // console.log(reg);
+    
+      //new RegExp(
+    //    "((?<=\\s|^)" + annotationsList.join("|") + "(?=\\s|$|[.!?\\-,]))",
+      //  "gi"
+   //   )
+   //"((?<=\\s|^)" + annotationsList.join("|") + "(?=\\s|$|[.!?\\-,]))"
+   console.log(annotationsList)
+    const parts = this.props.snippet.split(new RegExp(reg,"gi"));
     return (
       <div className={classes.textArea}>
         <span>
