@@ -42,7 +42,7 @@ class TextHighlighter extends React.Component {
       //  "gi"
    //   )
    //"((?<=\\s|^)" + annotationsList.join("|") + "(?=\\s|$|[.!?\\-,]))"
-   console.log(annotationsList)
+  // console.log(annotationsList)
     const parts = this.props.snippet.split(new RegExp(reg,"gi"));
     return (
       <div className={classes.textArea}>
