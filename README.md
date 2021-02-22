@@ -19,6 +19,8 @@ $ npm start
 
 ### Features
 
+#### Annotations
+While a user has the abillity to add annotations to snippets special care needs to be made for words inside of other words.  As an example if a user wishes to annotate 'an' if there is a word such as 'Canada' then should 'an' be highlighted in 'Canada'?  I opted to make this not be annotated meaning that the word has to be solely by itself to be highlighted.
 
 #### Responiveness
 The frontend is fully responsive and can even work on mobile devices.  Additionally, the frontend also provides feedback on if a user has preformed an action by either showing a loading icon, success message or failure message so that they can know what went wrong
