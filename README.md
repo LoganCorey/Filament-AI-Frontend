@@ -19,6 +19,9 @@ $ npm start
 
 ### Features
 
+#### Annotation
+Annotating a piece of text works by highlighting the text and clicking a tag.  The issue comes in when you have a word such as 'an' inside another word like C'an'ada.  Im this scenario I decided to make this not register the word since even though 'an' is in 'Canada' it's not the word itself.
+
 #### Responiveness
 The frontend is fully responsive and can even work on mobile devices.  Additionally, the frontend also provides feedback on if a user has preformed an action by either showing a loading icon, success message or failure message so that they can know what went wrong
 
