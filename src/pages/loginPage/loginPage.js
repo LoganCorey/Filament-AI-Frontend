@@ -8,6 +8,7 @@ import Line from "../../components/line/line";
 import FormError from "../../components/form/formError/formError";
 import { loginAction } from "../../utils/api";
 import { Redirect } from "react-router";
+import Loading from '../../components/loading/loading';
 /**
  * Page used for signing in a user
  */
@@ -20,6 +21,7 @@ class LoginPage extends React.Component {
       password: "",
       invalidLogin: false,
       successLogin: false,
+      loading:false,
     };
   }
   /**
@@ -37,16 +39,19 @@ class LoginPage extends React.Component {
 
   loginFunc = async (e) => {
     e.preventDefault();
+    this.setState((prevState)=>{
+      return {...prevState, loading:true}
+    })
     const res = await loginAction(this.state.email, this.state.password);
     //console.log(res.status);
     if (res.status >= 400) {
       this.setState((state, props) => {
-        return { ...state, invalidLogin: true };
+        return { ...state, invalidLogin: true, loading:false };
       });
     } else {
       this.setState((state, props) => {
         this.props.setLoggedIn();
-        return { ...state, successLogin: true };
+        return { ...state, successLogin: true, loading:false };
       });
     }
   };
@@ -100,6 +105,7 @@ class LoginPage extends React.Component {
               />
             </Box>
           </form>
+          { this.state.loading? <Loading/>: null}
         </main>
       </>
     );

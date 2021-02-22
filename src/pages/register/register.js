@@ -8,6 +8,7 @@ import Line from "../../components/line/line";
 import FormError from "../../components/form/formError/formError";
 import { registerAction } from "../../utils/api";
 import { Redirect } from "react-router";
+import Loading from '../../components/loading/loading';
 
 /**
  * Page used for regisering a user to the platform
@@ -24,6 +25,7 @@ class Register extends React.Component {
       invalidRegister: false,
       successRegister: false,
       errorMessage: "",
+      loading:false,
     };
   }
 
@@ -39,14 +41,17 @@ class Register extends React.Component {
 
   registerFunc = async (e) => {
     e.preventDefault();
+    this.setState((prevState)=>{
+      return {...prevState, loading:true}
+    })
     const res = await registerAction(this.state.email, this.state.phone, this.state.password, this.state.passwordConfirm);
     if (res.status >= 400) {
       this.setState((state, props) => {
-        return { ...state, invalidRegister: true, errorMessage:res.data.message };
+        return { ...state, invalidRegister: true, errorMessage:res.data.message, loading:false };
       });
     } else {
       this.setState((state, props) => {
-        return { ...state, successRegister: true };
+        return { ...state, successRegister: true, loading:false };
       });
     }
   };
@@ -111,6 +116,7 @@ class Register extends React.Component {
             <Button type="submit" classes={[classes.registerButton]} text="Register" />
           </Box>
           </form>
+        { this.state.loading? <Loading/>: null}
         </main>
       </>
     );
