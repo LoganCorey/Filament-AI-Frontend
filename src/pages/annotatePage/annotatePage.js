@@ -105,8 +105,8 @@ class AnnotatePage extends React.Component {
         <QuickNavigate to="/snippets" />
         <h1> Annotate Snippet</h1>
         <p style={{maxWidth:'80%'}}>
-          To annotate the snippet highlight some text and then click the desired
-          tag in the tags box directly below.  Also if you wish to delete a tag then click on the tag in the snippet below.
+          To annotate the snippet highlight your text and then click the desired
+          tag in the tags box directly below.  If you wish to delete a tag then click on the tag in the snippet below.
         </p>
         <Line />
         { this.state.loading? <Loading/>: null}
