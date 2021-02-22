@@ -9,7 +9,7 @@ import { createSnippet, getSnippets } from "../../utils/api";
 import FormError from "../../components/form/formError/formError";
 import QuickNavigate from "../../components/quickNavigate/quickNavigate";
 import classes from "./snippetsPage.module.css";
-import Loading from '../../components/loading/loading';
+import Loading from "../../components/loading/loading";
 /**
  * Displays every snippet and lets a user add a new snippet
  */
@@ -23,7 +23,8 @@ class SnippetsPage extends React.Component {
       snippetError: false,
       snippetSuccess: false,
       loadingSnippets: true,
-      loadingSnippetsError:""
+      loadingSnippetsError: "",
+      snippetErrorMessage: "",
     };
   }
   /**
@@ -34,13 +35,20 @@ class SnippetsPage extends React.Component {
     const res = await getSnippets();
     if (res.status === 200) {
       this.setState((state, props) => {
-        return { ...state, snippets: res.data.snippets, loadingSnippets:false };
+        return {
+          ...state,
+          snippets: res.data.snippets,
+          loadingSnippets: false,
+        };
       });
-    }
-    else{
+    } else {
       this.setState((state, props) => {
-      return { ...state, loadingSnippetsError:"Could not retrieve snippets", loadingSnippets:false };
-    });
+        return {
+          ...state,
+          loadingSnippetsError: "Could not retrieve snippets",
+          loadingSnippets: false,
+        };
+      });
     }
   }
 
@@ -78,9 +86,15 @@ class SnippetsPage extends React.Component {
           };
         });
       }
-    } else {
+    }
+     else {
       this.setState((state, props) => {
-        return { ...state, snippetError: true, snippetSuccess: false };
+        return {
+          ...state,
+          snippetError: true,
+          snippetSuccess: false,
+          snippetErrorMessage: snippetRes.data.message,
+        };
       });
     }
   };
@@ -97,8 +111,8 @@ class SnippetsPage extends React.Component {
           </p>
         </header>
         <main>
-          {this.state.formError ? (
-            <FormError message="This snippet has already been created!" />
+          {this.state.snippetError ? (
+            <FormError message={this.state.snippetErrorMessage} />
           ) : null}
           {this.state.snippetSuccess ? (
             <p className="successText">Successfully added a new snippet!</p>
@@ -127,8 +141,10 @@ class SnippetsPage extends React.Component {
           <Line />
           <Box t={1} />
           <h1> All Snippets</h1>
-          {this.state.loadingSnippets? <Loading/>: null}
-          {this.state.loadingSnippetsError !== ""?<p className="errorText">Could not load snippets</p>:null}
+          {this.state.loadingSnippets ? <Loading /> : null}
+          {this.state.loadingSnippetsError !== "" ? (
+            <p className="errorText">Could not load snippets</p>
+          ) : null}
           <div className={classes.snippetsContainer}>
             {this.state.snippets.map((snippet, index) => {
               return (
