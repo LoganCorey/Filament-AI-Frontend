@@ -14,9 +14,8 @@ class HomePage extends React.PureComponent {
         <header>
           <h1> Welcome Back!</h1>
           <p>
-            Welcome to your dashboard. If you're new here please start adding
-            some tags and then some snippets by clicking go in the "Manage Your
-            Tags" box.
+            Welcome to your dashboard. If you're new here you can view all your tags by clicking "View Tags" on the right or if you want to start
+            annotating a snippet or manage your snippets click "Manage Snippets" on the left.
           </p>
           <Line />
         </header>
@@ -33,9 +32,9 @@ class HomePage extends React.PureComponent {
               </Grid>
               <Grid column={true} sm={12} md={6}>
                 <Card
-                  title="Manage Your Tags"
+                  title="View Your Tags"
                   description="Click here to view all your tags or modify/add some"
-                  text="Manage Tags"
+                  text="View Tags"
                   link="/tags"
                 />
               </Grid>
