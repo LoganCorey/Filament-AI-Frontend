@@ -2,6 +2,9 @@
 Data annotation is an important activity used to generate the training data and metadata required for machine learning tasks.  Here I have created a simple text annotation tool that allows a user to create and maange text annotations for user-inpuuted text snippets.
 ![Picture of signin page](images/signin.png?raw=true "Sign In Page")
 
+### View the App
+You can view the app by navigating to the following url https://gracious-wescoff-b9c656.netlify.app/
+
 ### Prerequisites
 The Annotator frontend requires:
 * Node v12+
