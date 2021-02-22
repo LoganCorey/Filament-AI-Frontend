@@ -73,7 +73,7 @@ class SnippetPage extends React.Component {
       <header>
         <QuickNavigate to="/snippets" />
         <h1>Edit Snippet</h1>
-        <p>Edit the text in the below box to update your snippet!</p>
+        <p>To edit your snippet modify the text in the below box and click "Update"!</p>
         </header>
         <main>
           {this.state.loading? <Loading/>: null}
