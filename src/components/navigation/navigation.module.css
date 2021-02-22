@@ -1,0 +1,101 @@
+.navigation {
+  box-shadow: 0px 2px 3px rgb(0 0 0 / 4%);
+  border-bottom: 1px solid #dddddd;
+  height: 84px;
+  width:100%;
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color:white;
+
+}
+
+.navigation a {
+  text-decoration:none;
+}
+
+.navigation ul{
+  margin:0;
+  padding:0;
+  display:flex;
+}
+
+.navigation ul li{
+  display: inline-block;
+  list-style-type: none;
+}
+
+.navigation ul li a {
+  text-decoration:none;
+  margin-left:20px;
+  margin-right:20px;
+  font-size:1.1em;
+  color:#0d0c22;
+
+}
+.navigation ul li a:hover {
+  transition:1s linear;
+  color:#d30685;
+
+}
+
+
+
+
+
+.navigationLogo{
+  display:inline-block;
+  margin-left:20px;
+  font-weight:300;
+  font-size:1.4em;
+}
+
+/*
+.navigation a {
+  padding: 14px 16px;
+  float: left;
+  text-align: center;
+  text-decoration: none;
+}
+
+.menuRight a {
+  padding: 14px 16px;
+}
+.logo {
+  font-weight: 300;
+  margin: 0;
+  float: left;
+
+  font-size: 1.4em;
+}
+
+.menuRight {
+  float: right;
+}
+
+@media screen and (max-width: 600px) {
+  .navigation  a:not(:first-child) {
+    display: none;
+  }
+  .navigation  a.icon {
+    float: right;
+    display: block;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .navigation .responsive {
+    position: relative;
+  }
+  .navigation .responsive .icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .navigation .responsive a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+}
+*/

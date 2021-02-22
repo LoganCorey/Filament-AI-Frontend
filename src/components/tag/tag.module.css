@@ -1,0 +1,23 @@
+.tag {
+  box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%),
+    0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
+  border-radius: 5px;
+  letter-spacing: 0.05em;
+  margin-top: 2px;
+  margin-bottom: 2px;
+  text-transform: capitalize;
+  font-weight: 500;
+  list-style: none;
+  display: inline;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px;
+  color:white;
+}
+
+/*
+marginLeft: 10,
+marginRight: 10,
+marginBottom: 20,
+height: 40,
+*/

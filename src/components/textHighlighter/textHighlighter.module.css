@@ -1,0 +1,7 @@
+.textArea{
+    max-width: 60%;
+    text-align: left;
+    max-height: 500px;
+    overflow: auto;
+    line-height:2.5em;
+}

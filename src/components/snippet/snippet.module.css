@@ -1,0 +1,19 @@
+@media only screen and (max-width: 600px) {
+    .snippet{
+        width:400px !important;
+        height: 170px !important;
+        min-height:170px !important;
+        min-width:400px !important;
+        margin:10px !important;
+    }
+  }
+
+.snippet{
+    width:450px;
+    height: 280px;
+    min-height:300px;
+    min-width:500px;
+    overflow-y: auto;
+    margin:20px;
+    text-align:left;
+}
