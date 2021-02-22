@@ -14,7 +14,7 @@ class HomePage extends React.PureComponent {
         <header>
           <h1> Welcome Back!</h1>
           <p>
-            Welcome to your dashboard. If you're new here you can view all your tags by clicking "View Tags" on the right or if you want to start
+            Welcome to your dashboard. If you're new here you can view all your tags by clicking "View Tags" on the right. If you want to start
             annotating a snippet or manage your snippets click "Manage Snippets" on the left.
           </p>
           <Line />
