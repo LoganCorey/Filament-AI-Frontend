@@ -106,8 +106,7 @@ class SnippetsPage extends React.Component {
           <QuickNavigate to="/dashboard" />
           <h1> Manage Your Snippets</h1>
           <p>
-            Click any snippet below to edit it or click in the bottom right to
-            create a new snippet.
+            Click "Edit Snippet" below to edit the snippet it or click "Annotate Snippet" to start adding annotations specific to that snippet.
           </p>
         </header>
         <main>
