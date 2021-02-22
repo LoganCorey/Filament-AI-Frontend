@@ -33,7 +33,7 @@ class HomePage extends React.PureComponent {
               <Grid column={true} sm={12} md={6}>
                 <Card
                   title="View Your Tags"
-                  description="Click here to view all your tags or modify/add some"
+                  description="Click here to view all your tags"
                   text="View Tags"
                   link="/tags"
                 />
